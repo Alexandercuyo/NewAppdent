@@ -1,0 +1,110 @@
+{
+  Feature: Gestionar cuenta de usuario
+  Scenario: Registro de usuario
+
+  Given que la persona no esta registrado como usuario de la
+  app y el persona se encuentre en la pantalla Iniciar
+  una cuenta, presiona el boton "Registrarse como persona(usuario)"
+
+  When la persona completa los datos requeridos
+  (Nombres, Apellidos, Edad, Genero, Cumpleanios, Correo Electronico y contrasena)
+  y completa el proceso, presionando el boton "Registrarse"
+
+  Then el sistema agrega la persona hacia el sistema de usuarios y se
+  crea una cuenta con su correo y contrasenia que ingreso en la
+  aplicacion y se muestra el mensaje "Bienvenido (nombre del usuario)
+  Se ha registrado con exito"
+
+  Examples:
+  |Nombres | Apellidos  |  Edad | Genero    | Cumpleanios | Correo                | Contrasenia  |
+  |Fank    | Florez     |  23   | Masculino | 02/05/1999  | u2018...@upc.edu.pe   | 12@#45678aA  |
+
+  Scenario: Iniciar sesion en la aplicacion
+
+  Given que la persona se ha identificado como usuario de la app y se encuentra en la pantalla de "Iniciar seson"
+
+  When ingresa los datos requeridos que son el correo y contrasenia de autenticidad para acceder como usuario (persona) de la aplicacion y presiona el boton Iniciar Sesion
+
+  Then el sistema muestra la pantalla de bienvenida con una barra de diferentes opciones de acceso, un recuadro de busqueda general y revisar los perfiles de cada odontologo.
+
+  Examples:
+
+  |inicia sesion | Correo               | contrasenia | Iniciar sesion |
+  |identificado  | u2018...@upc.edu.pe  | 12@#45678aA | correcto       |
+
+  Feature: Reservar una cita en la app
+  Scenario: Visualizar los horarios de los diferentes odontologos
+
+  Given que el usuario se encuentra en el perfil de un odontologo y presiona la lupa para buscar los horarios disponibles
+  When selecciona el boton "horarios disponibles"
+  Then el sistema muestra en pantalla todos los horarios disponible
+
+  Examples:
+  |Lupa     | Horarios disponible|
+  |horarios | 10 am: 2pm : 4pm   |
+
+
+  Feature: Opinar del servicio recivido
+  Scenario:  Calificar servicio brindado
+
+  Given que el usuario se encuentra en el servicio que le proporciono  la app
+  When se termina tratamiento, procedera con la calificacion del servicio con 0 a 5 estrellas
+  Then el sistema guarda la calificacion
+  And se promedia con las calificaciones previas de los servicios que eligio
+
+  Examples:
+  |Calificar|
+  |  0 o 5  |
+
+  Scenario: Escribir del servicio brindado
+
+  Given que el usuario se encuentra en la seccion de calificacion de servico
+  And presiona el boton Escribir comentario
+  When escribe su comentario sobre el servicio
+  And presiona el boton Enviar
+  Then el sistema agrega el comentario a la seccion de Valoraciones del servicio.
+
+  Examples:
+  |Cometario                 | Enviar|
+  |El servico...es bueno etc | si    |
+
+  Feature: Precios de los servicios
+
+  Scenario: El usuario busca el precio mas comodo del servicio que requiere
+
+  Given que se verifico en el Sistema que los datos del usuario ya se encuentran registrados .
+  And el usuario  ya se encuentre en la seccion de "Precios por servicio"
+  When  el cliente digita el servicio que requiere
+  Then la aplicacion le mostrara todos los precios comparados en una lista
+
+  Examples:
+  |Precios por servicio| Lista             |
+  | Periodoncia        | $150 , $180 , 160 |
+
+  Feature: Atencion al cliente
+
+  Scenario:Atencion con el odontologo
+
+  Given que se verifico en el sistema que los datos del usuario ya se encuentran registrados
+  When requiera contactarse con el odontologo de su preferencia
+  Then le llegara una notificacion al odontologo para poder conectarse
+
+  Examples:
+  |Datos del usuario| Contactar odontologo|
+  | Resgistrados    |  notificacion       |
+
+  Feature: Gestion de cuenta de una empresa
+
+  Scenario: Registrar como empresa de la aplicacion
+
+  Given que la empresa no esta registrada habra una opcion llamada "Trabaja con nosotros" al presionarla saldra una serie de requisitos que tiene que completar.
+  When la empresa completa los datos requeridos y completa el proceso, presionando el bottn "enviar solicitud"
+  Then el sistema automaticamente empezara a validar los datos de la empresa y si el caso procede, la empresa tendra una cuenta personalizada para que pueda ofrecer sus servicios.
+
+  Examples:
+  |Completar datos     | dato completados |
+  |Trabaja con nosotros| Enviar           |
+
+
+}
+}
